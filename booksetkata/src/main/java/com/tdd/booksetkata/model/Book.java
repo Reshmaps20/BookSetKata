@@ -1,7 +1,7 @@
 package com.tdd.booksetkata.model;
 
 public enum Book {
-	
+
 	CLEAN_CODE("Clean Code"), 
 	CLEAN_CODER("The Clean Coder"), 
 	CLEAN_ARCHITECTURE("Clean Architecture"),
@@ -18,4 +18,8 @@ public enum Book {
 	public String getTitle() {
 		return title;
 	}
+
+	 public static Book mapToBook(String title) {
+	        return Book.valueOf(title);
+	  }
 }
