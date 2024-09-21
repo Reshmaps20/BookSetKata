@@ -19,11 +19,20 @@ public class BookStoreServiceTest {
 
 	@Test
 	public void testCalculatePrice_CalculatePriceForSingleBookPurchase_ReturnsPriceOfSingleBook() {
-		
+
 		BookStoreService bookStoreService = new BookStoreService();
 		List<Book> books = Arrays.asList(Book.CLEAN_CODE);
 		double price = bookStoreService.calculatePrice(books);
 		assertEquals(50.0, price);
+	}
+
+	@Test
+	public void testCalculatePrice_TwoDifferentBooks() {
+
+		BookStoreService bookStoreService = new BookStoreService();
+		List<Book> books = Arrays.asList(Book.CLEAN_CODE, Book.CLEAN_CODER);
+		double price = bookStoreService.calculatePrice(books);
+		assertEquals(95.0, price);
 	}
 
 }

@@ -14,7 +14,13 @@ public class BookStoreService {
 	}
 
 	public double calculatePrice(List<Book> books) {
-		 return books.size() * Book.PRICE;
+
+		double discount = 0.0;
+		long uniqueBookCount = books.stream().distinct().count();
+		if (uniqueBookCount == 2) {
+			discount = 0.05;
+		}
+		return books.size() * Book.PRICE * (1 - discount);
 	}
 
 }
