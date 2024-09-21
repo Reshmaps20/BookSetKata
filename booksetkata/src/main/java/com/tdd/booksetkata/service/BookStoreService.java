@@ -24,9 +24,7 @@ public class BookStoreService {
 	public double calculatePrice(List<Book> books) {
 
 		double totalPrice = 0.0;
-		for (Book book : books) {
-			bookCounts.put(book, bookCounts.getOrDefault(book, 0) + 1);
-		}
+		addBook(books);
 
 		int[] copyOfBookList = bookCounts.values().stream().mapToInt(Integer::intValue).toArray();
 
@@ -47,6 +45,13 @@ public class BookStoreService {
 			totalPrice += Book.PRICE * uniqueBooks * (1 - discount);
 		}
 		return totalPrice;
+	}
+
+	private void addBook(List<Book> books) {
+		
+		for (Book book : books) {
+			bookCounts.put(book, bookCounts.getOrDefault(book, 0) + 1);
+		}
 	}
 
 	private double getDiscount(int uniqueBookCount) {
