@@ -47,5 +47,13 @@ public class BookStoreServiceTest {
 		double price = bookStoreService.calculatePrice(books);
 		assertEquals(135.0, price);
 	}
+	
+	@Test
+	public void testCalculatePrice_ThreeDifferentBookWithMutlipleCopyOfFirstTwoBook_RetrunsMinimumTotalPrice() {
+
+		List<Book> books = Arrays.asList(Book.CLEAN_CODE, Book.CLEAN_CODE, Book.CLEAN_CODER, Book.CLEAN_CODER, Book.CLEAN_ARCHITECTURE);
+		double price = bookStoreService.calculatePrice(books);
+		assertEquals(230.0, price);
+	}
 
 }
