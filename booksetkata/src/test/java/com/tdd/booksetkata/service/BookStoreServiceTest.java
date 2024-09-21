@@ -66,4 +66,12 @@ public class BookStoreServiceTest {
 		assertEquals(160.0, price);
 	}
 
+	@Test
+	public void testCalculatePrice_FiveDifferentBookPurchaseShouldGive25PercentDiscount_ReturnsTotalPrice() {
+		List<Book> books = Arrays.asList(Book.CLEAN_CODE, Book.CLEAN_CODER, Book.CLEAN_ARCHITECTURE,
+				Book.TDD_BY_EXAMPLE, Book.WORKING_WITH_LEGACY_CODE);
+		double price = bookStoreService.calculatePrice(books);
+		assertEquals(187.5, price);
+	}
+
 }
