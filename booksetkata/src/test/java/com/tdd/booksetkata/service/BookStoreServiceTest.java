@@ -59,7 +59,7 @@ public class BookStoreServiceTest {
 
 	@Test
 	public void testCalculatePrice_FourDifferentBookPurchaseShouldGive20PercentDiscount_RetrunsTotalPrice() {
-		
+
 		List<Book> books = Arrays.asList(Book.CLEAN_CODE, Book.CLEAN_CODER, Book.CLEAN_ARCHITECTURE,
 				Book.TDD_BY_EXAMPLE);
 		double price = bookStoreService.calculatePrice(books);
@@ -68,10 +68,21 @@ public class BookStoreServiceTest {
 
 	@Test
 	public void testCalculatePrice_FiveDifferentBookPurchaseShouldGive25PercentDiscount_ReturnsTotalPrice() {
+		
 		List<Book> books = Arrays.asList(Book.CLEAN_CODE, Book.CLEAN_CODER, Book.CLEAN_ARCHITECTURE,
 				Book.TDD_BY_EXAMPLE, Book.WORKING_WITH_LEGACY_CODE);
 		double price = bookStoreService.calculatePrice(books);
 		assertEquals(187.5, price);
+	}
+
+	@Test
+	public void testCalculatePrice_MultipleCopiesOfAllTheFiveBooks_ReturnsMinimumTotalPrice() {
+		
+		List<Book> books = Arrays.asList(Book.CLEAN_CODE, Book.CLEAN_CODE, Book.CLEAN_CODER, Book.CLEAN_CODER,
+				Book.CLEAN_ARCHITECTURE, Book.CLEAN_ARCHITECTURE, Book.TDD_BY_EXAMPLE,
+				Book.WORKING_WITH_LEGACY_CODE);
+		double price = bookStoreService.calculatePrice(books);
+		assertEquals(320.0, price); 
 	}
 
 }

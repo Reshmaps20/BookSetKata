@@ -1,5 +1,6 @@
 package com.tdd.booksetkata.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -23,15 +24,33 @@ public class BookStoreService {
 
 	public double calculatePrice(List<Book> books) {
 
-		double totalPrice = 0.0;
 		addBook(books);
 
+		List<Double> possiblePrices = new ArrayList<>();
 		int[] copyOfBookList = bookCounts.values().stream().mapToInt(Integer::intValue).toArray();
+
+		double totalPriceFor5Books = calculateCombinationPrice(copyOfBookList, 5);
+		possiblePrices.add(totalPriceFor5Books);
+
+		double totalPriceFor4Books = calculateCombinationPrice(copyOfBookList, 4);
+		possiblePrices.add(totalPriceFor4Books);
+
+		double totalPriceFor3Books = calculateCombinationPrice(copyOfBookList, 3);
+		possiblePrices.add(totalPriceFor3Books);
+
+		return possiblePrices.stream().min(Double::compare).orElse(0.0);
+
+	}
+
+	private double calculateCombinationPrice(int[] book, int numberOfBooks) {
+
+		int[] copyOfBookList = Arrays.copyOf(book, book.length);
+		double totalPrice = 0.0;
 
 		while (Arrays.stream(copyOfBookList).sum() > 0) {
 			int uniqueBooks = 0;
 			for (int i = 0; i < copyOfBookList.length; i++) {
-				if (copyOfBookList[i] > 0) {
+				if (copyOfBookList[i] > 0 && uniqueBooks < numberOfBooks) {
 					uniqueBooks++;
 					copyOfBookList[i]--;
 				}
