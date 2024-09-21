@@ -40,4 +40,12 @@ public class BookStoreServiceTest {
 		assertEquals(95.0, price);
 	}
 
+	@Test
+	public void testCalculatePrice_ThreeDifferentBookPurchaseShouldGive10PercentDiscount_RetrunsTotalPrice() {
+
+		List<Book> books = Arrays.asList(Book.CLEAN_CODE, Book.CLEAN_CODER, Book.CLEAN_ARCHITECTURE);
+		double price = bookStoreService.calculatePrice(books);
+		assertEquals(135.0, price);
+	}
+
 }
