@@ -49,17 +49,14 @@ public class BookStoreService {
 		return totalPrice;
 	}
 
-	private double getDiscount(long uniqueBookCount) {
+	private double getDiscount(int uniqueBookCount) {
 
-		if (uniqueBookCount == 4) {
-			return 0.20;
-		} else if (uniqueBookCount == 3) {
-			return 0.10;
-		} else if (uniqueBookCount == 2) {
-			return 0.05;
-		} else {
-			return 0.0;
-		}
+		return switch (uniqueBookCount) {
+			case 2 -> 0.05;
+			case 3 -> 0.10;
+			case 4 -> 0.20;
+			default -> 0.0;
+		};
 	}
 
 }
