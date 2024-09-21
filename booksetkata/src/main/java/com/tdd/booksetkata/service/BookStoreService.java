@@ -13,4 +13,8 @@ public class BookStoreService {
 		return Arrays.asList(Book.values());
 	}
 
+	public double calculatePrice(List<Book> books) {
+		 return books.size() * Book.PRICE;
+	}
+
 }

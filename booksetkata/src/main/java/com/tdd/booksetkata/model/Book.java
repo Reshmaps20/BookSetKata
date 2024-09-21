@@ -9,6 +9,7 @@ public enum Book {
 	WORKING_WITH_LEGACY_CODE("Working Effectively with Legacy Code");
 
 	private final String title;
+	public static final double PRICE = 50.0;
 
 	Book(String title) {
 		this.title = title;
