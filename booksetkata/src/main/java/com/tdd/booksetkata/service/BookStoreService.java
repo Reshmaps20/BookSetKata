@@ -32,6 +32,7 @@ public class BookStoreService {
 			double totalPriceForBooks = calculateCombinationPrice(copyOfBookList, numberOfBooks);
 			possiblePrices.add(totalPriceForBooks);
 		}
+	    bookCounts.clear();
 		return possiblePrices.stream().min(Double::compare).orElse(0.0);
 	}
 
